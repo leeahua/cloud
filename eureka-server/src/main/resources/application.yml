@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8761
+eureka:
+  client:
+    #注册中心，不向自己注册
+    fetch-registry: false
+    #注册中心负责维护服务实例，关闭服务检索
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: com.me.com
+  server:
+    #关闭自我保护
+    enable-self-preservation: false
+    #清理间隔 默认60*1000
+    eviction-interval-timer-in-ms: 5000
