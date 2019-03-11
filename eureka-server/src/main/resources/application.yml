@@ -18,3 +18,9 @@ eureka:
     enable-self-preservation: false
     #清理间隔 默认60*1000
     eviction-interval-timer-in-ms: 5000
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin

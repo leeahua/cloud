@@ -1,9 +1,13 @@
 spring:
   application:
     name: feign-consumer
+server:
+  port: 8089
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://com.me.com:8761/eureka/
-server:
-  port: 8089
+      defaultZone: http://${security.user.name}:${security.user.password}@com.me.com:8761/eureka/
+security:
+  user:
+    name: admin
+    password: admin
