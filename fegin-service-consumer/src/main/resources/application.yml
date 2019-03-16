@@ -1,13 +1,48 @@
 spring:
   application:
-    name: feign-consumer
+    name: feign-consumer22
 server:
-  port: 8089
+  port: 7777
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${security.user.name}:${security.user.password}@com.me.com:8761/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@10.1.41.6:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+
+
 security:
+  oauth2:
+    client:
+      clientId: autopai-cloud-client-iot
+      clientSecret: autopaiClientSecret
+      access-token-uri: http://autopai-cloud-gateway:7979/uac/oauth/token
+      user-authorization-uri: http://autopai-cloud-gateway:7979/uac/oauth/authorize
+    resource:
+      user-info-uri: http://autopai-cloud-gateway:7979/uac/user
+      prefer-token-info: false
+      jwt:
+        key-uri: http://autopai-cloud-provider-uac:8000/oauth/token_key
+      id: 12345678
   user:
-    name: admin
-    password: admin
+    name: root
+    password: root
+autopai:
+  enableSqlLogInterceptor: false
+  token:
+    interceptor:
+      enable: true
+  zk:
+    zkAddressList: autopai-cloud-provider-zk:2181
+  oauth2:
+    jwtSigningKey: autopai
+    client:
+      id: ${security.oauth2.resource.id}
+      accessTokenUrl: ${security.oauth2.client.access-token-uri}
+      clientId: ${security.oauth2.client.clientId}
+      clientSecret: ${security.oauth2.client.clientSecret}
+      clientAuthenticationScheme: header
+      tokenStore: jwt

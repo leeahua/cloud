@@ -1,17 +1,23 @@
 package com.me.eureka.consumer.controller;
 
-import com.me.eureka.consumer.service.DemoService;
+import com.me.eureka.consumer.DemoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 public class EurekaController {
     @Autowired
     private DemoService demoService;
 
-    @RequestMapping("/hello")
+    @Autowired
+    private IUserFeignClient iUserFeignClient;
+
+    @RequestMapping("/hello/demo")
     public String hello(){
+        log.info(iUserFeignClient.hellotest());
         return demoService.hello();
     }
 

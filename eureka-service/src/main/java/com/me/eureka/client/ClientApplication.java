@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class ClientApplication {
 
-    @RequestMapping("/hello")
-    public String hello(){
-        return "success!";
-    }
+
     public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class, args);
     }
