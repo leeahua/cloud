@@ -1,12 +1,12 @@
 spring:
   application:
-    name: feign-consumer22
+    name: feign-consumer7777777
 server:
   port: 7777
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${security.user.name}:${security.user.password}@10.1.41.6:8761/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@autopai-cloud-eureka:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
   instance:
